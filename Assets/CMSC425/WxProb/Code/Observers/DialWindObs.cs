@@ -18,6 +18,8 @@ namespace Wx
         {
             // Add code to manage reports of state changes.
             axle.z = direction;
+            transform.rotation = axle;
+
         }
     }
 }
