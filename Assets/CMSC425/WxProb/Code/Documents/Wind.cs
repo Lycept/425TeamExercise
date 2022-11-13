@@ -31,12 +31,24 @@ namespace Wx
         float windDirection = 0;
         float windSpeed = 0;
 
-        bool isSimulated = false;
+        bool isSimulated = true;
 
         public void ChangeState()
         {
             // Add code here to switch states and inform observers
-            isSimulated = !isSimulated;
+            if (isSimulated)
+            {
+                StopCoroutine(SimulateWind());
+                isSimulated = !isSimulated;
+                StartCoroutine(GetNetworkWind());
+            }
+            else
+            {
+                StopCoroutine(GetNetworkWind());
+                isSimulated = !isSimulated;
+                StartCoroutine(SimulateWind());
+            }
+            
         }
 
         IEnumerator SimulateWind()
@@ -49,11 +61,57 @@ namespace Wx
                 // and speeds every half-second to the proper observers.
                 // Be sure to use some randomness to change the direction
                 // and speed.
+
+                int seed = r.Next(6);
                 if (isSimulated)
                 {
+                    yield return null;
+                    if (seed < 2)
+                    {
+                        windDirection = windDirection - deltaWindDirection + windDirectionMax;
+                        windDirection %= windDirectionMax;
+                    }
+                    else if (seed > 3)
+                    {
+                        windDirection += deltaWindDirection;
+                        windDirection %= windDirectionMax;
+                    }
+                    if (windSpeed + deltaWindSpeed <= windSpeedMax)
+                    {
+                        if (windSpeed - deltaWindSpeed >= windSpeedMin)
+                        {
+                            if (seed < 2)
+                            {
+                                windSpeed -= deltaWindSpeed;
+                            }
+                            else if (seed > 3)
+                            {
+                                windSpeed += deltaWindSpeed;
+                            }
+                        }
+                        else
+                        {
+                            if (seed > 2)
+                            {
+                                windSpeed += deltaWindSpeed;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (seed < 3)
+                        {
+                            windSpeed -= deltaWindSpeed;
+                        }
+                    }
 
+                    ReportWind(windDirection, windSpeed);
+                    Debug.Log("airport is" + airportID + " windDirection is" + windDirection + " windSpeed is" + windSpeed);
+                    ReportState(isSimulated);
                 }
                 else yield break;
+
+                
 
                 yield return wait;
             }
@@ -93,7 +151,7 @@ namespace Wx
                     using (UnityWebRequest www = UnityWebRequest.Get("https://api.weather.gov/stations/K" + airportID + "/observations/latest"))
                     {
                         yield return www.SendWebRequest();
-                        if (www.isNetworkError || www.isHttpError)
+                        if (www.result==UnityWebRequest.Result.ConnectionError || www.result==UnityWebRequest.Result.ProtocolError)
                         {
                             Debug.Log(www.error);
                         }
@@ -101,7 +159,8 @@ namespace Wx
                         {
                             String json = www.downloadHandler.text;
                             Wx wx = JsonUtility.FromJson<Wx>(json);
-                            Debug.Log("fetching data from network");
+                            Debug.Log(json);
+                            Debug.Log("windDirection:"+wx.properties.windDirection.value+" windSpeed:"+wx.properties.windSpeed.value);
                             ReportWind(wx.properties.windDirection.value,wx.properties.windSpeed.value);
                             ReportState(isSimulated);
                         }
@@ -117,8 +176,16 @@ namespace Wx
         //for testing only
         private void Start()
         {
-            airportID = "IAD";
-            StartCoroutine(GetNetworkWind());
+            windDirection = r.Next(0, windDirectionMax+1);
+            windSpeed = r.Next((int)windSpeedMin, (int)windSpeedMax);
+            if (isSimulated)
+            {
+                StartCoroutine(SimulateWind());
+            }
+            else
+            {
+                StartCoroutine(GetNetworkWind());
+            }
         }
     }
 }

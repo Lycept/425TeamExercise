@@ -16,9 +16,10 @@ namespace Wx
             tmp = GetComponent<TextMeshPro>();
             wind.ReportState += ReportState;
             id = wind.airportID;
+            
         }
 
-        private void ReportState(bool isSimulated)
+        public void ReportState(bool isSimulated)
         {
             // Add code to manage reports of state changes.
             string state = "";
