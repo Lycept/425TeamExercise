@@ -326,6 +326,7 @@ GameObject:
   - component: {fileID: 853459420}
   - component: {fileID: 853459422}
   - component: {fileID: 853459421}
+  - component: {fileID: 853459423}
   m_Layer: 0
   m_Name: PortAndType
   m_TagString: Untagged
@@ -489,6 +490,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &853459423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853459419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87962f00a821cd641ae9f128ab01eb32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wind: {fileID: 2026991310}
 --- !u!1 &1323400140 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5428846034137246952, guid: 95630dd371dfa2b47bc97b7591b644d8, type: 3}
@@ -766,7 +780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae19c474150dda498b7a4ec8a67cb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wind: {fileID: 0}
+  wind: {fileID: 2026991310}
   axle: {x: 0, y: 0, z: 0}
 --- !u!1 &1947350149
 GameObject:
@@ -779,6 +793,7 @@ GameObject:
   - component: {fileID: 1947350150}
   - component: {fileID: 1947350152}
   - component: {fileID: 1947350151}
+  - component: {fileID: 1947350153}
   m_Layer: 0
   m_Name: DialDisplay
   m_TagString: Untagged
@@ -942,6 +957,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1947350153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947350149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c99d5e62ab66f4c4db050bdc823a106b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wind: {fileID: 2026991310}
 --- !u!1 &2023323921
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,6 +981,7 @@ GameObject:
   - component: {fileID: 2023323922}
   - component: {fileID: 2023323924}
   - component: {fileID: 2023323923}
+  - component: {fileID: 2023323925}
   m_Layer: 0
   m_Name: PortAndType
   m_TagString: Untagged
@@ -1116,6 +1145,64 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2023323925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023323921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87962f00a821cd641ae9f128ab01eb32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wind: {fileID: 2026991310}
+--- !u!1 &2026991309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2026991311}
+  - component: {fileID: 2026991310}
+  m_Layer: 0
+  m_Name: Wind
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2026991310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026991309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e6ff8e657e93464d927fbb9c410ff5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  airportID: IAD
+--- !u!4 &2026991311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026991309}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4864708, y: 2.405979, z: -2.8125455}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2056942677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1194,7 +1281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae19c474150dda498b7a4ec8a67cb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wind: {fileID: 0}
+  wind: {fileID: 2026991310}
   axle: {x: 0, y: 0, z: 0}
 --- !u!1 &2075528689
 GameObject:
@@ -1208,6 +1295,7 @@ GameObject:
   - component: {fileID: 2075528693}
   - component: {fileID: 2075528692}
   - component: {fileID: 2075528691}
+  - component: {fileID: 2075528694}
   m_Layer: 0
   m_Name: DataSwitch
   m_TagString: Untagged
@@ -1294,6 +1382,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075528689}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2075528694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075528689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87962f00a821cd641ae9f128ab01eb32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wind: {fileID: 2026991310}
 --- !u!4 &2080285409 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4819046542854778275, guid: 95630dd371dfa2b47bc97b7591b644d8, type: 3}
@@ -1310,6 +1411,7 @@ GameObject:
   - component: {fileID: 2111718705}
   - component: {fileID: 2111718707}
   - component: {fileID: 2111718706}
+  - component: {fileID: 2111718708}
   m_Layer: 0
   m_Name: DialDisplay
   m_TagString: Untagged
@@ -1473,3 +1575,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2111718708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111718704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c99d5e62ab66f4c4db050bdc823a106b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wind: {fileID: 2026991310}

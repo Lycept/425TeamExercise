@@ -101,6 +101,9 @@ namespace Wx
                         {
                             String json = www.downloadHandler.text;
                             Wx wx = JsonUtility.FromJson<Wx>(json);
+                            Debug.Log("fetching data from network");
+                            ReportWind(wx.properties.windDirection.value,wx.properties.windSpeed.value);
+                            ReportState(isSimulated);
                         }
                     }
 
