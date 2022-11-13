@@ -17,5 +17,11 @@ namespace Wx
         public QuantitativeValue relativeHumidity;
         public QuantitativeValue windChill;
         public QuantitativeValue heatIndex;
+
+        //for testing only
+        public String toString()
+        {
+            return "timeStamp:" + timestamp;
+        }
     }
 }

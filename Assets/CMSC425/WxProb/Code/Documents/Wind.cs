@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Net;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -30,11 +31,12 @@ namespace Wx
         float windDirection = 0;
         float windSpeed = 0;
 
-        bool isSimulated = true;
+        bool isSimulated = false;
 
         public void ChangeState()
         {
             // Add code here to switch states and inform observers
+            isSimulated = !isSimulated;
         }
 
         IEnumerator SimulateWind()
@@ -47,6 +49,11 @@ namespace Wx
                 // and speeds every half-second to the proper observers.
                 // Be sure to use some randomness to change the direction
                 // and speed.
+                if (isSimulated)
+                {
+
+                }
+                else yield break;
 
                 yield return wait;
             }
@@ -81,9 +88,34 @@ namespace Wx
                 // request: once to pause until the request has been answered,
                 // and a second time to pause for ten seconds before sending
                 // another request.
+                if (!isSimulated)
+                {
+                    using (UnityWebRequest www = UnityWebRequest.Get("https://api.weather.gov/stations/K" + airportID + "/observations/latest"))
+                    {
+                        yield return www.SendWebRequest();
+                        if (www.isNetworkError || www.isHttpError)
+                        {
+                            Debug.Log(www.error);
+                        }
+                        else
+                        {
+                            String json = www.downloadHandler.text;
+                            Wx wx = JsonUtility.FromJson<Wx>(json);
+                        }
+                    }
+
+                }
+                else yield break;
 
                 yield return wait;
             }
+        }
+
+        //for testing only
+        private void Start()
+        {
+            airportID = "IAD";
+            StartCoroutine(GetNetworkWind());
         }
     }
 }
