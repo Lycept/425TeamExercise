@@ -62,6 +62,7 @@ namespace Wx
                 // Be sure to use some randomness to change the direction
                 // and speed.
 
+
                 int seed = r.Next(6);
                 if (isSimulated)
                 {
